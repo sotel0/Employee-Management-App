@@ -1,22 +1,55 @@
-import React from "react";
-import { Table } from "reactstrap";
+import React, { useMemo, useState, useEffect } from "react";
+import Table from "./Table";
+import EmployeeForm from "./CreateEmployeeForm.js";
 function App() {
+  const columns = useMemo(
+    () => [
+      {
+        // first group - TV Show
+        Header: "TV Show",
+        // First group columns
+        columns: [
+          {
+            Header: "Name",
+            accessor: "show.name",
+          },
+          {
+            Header: "Type",
+            accessor: "show.type",
+          },
+        ],
+      },
+      {
+        // Second group - Details
+        Header: "Details",
+        // Second group columns
+        columns: [
+          {
+            Header: "Language",
+            accessor: "show.language",
+          },
+          {
+            Header: "Genre(s)",
+            accessor: "show.genres",
+          },
+          {
+            Header: "Runtime",
+            accessor: "show.runtime",
+          },
+          {
+            Header: "Status",
+            accessor: "show.status",
+          },
+        ],
+      },
+    ],
+    []
+  );
+
   return (
-    <div className="App container">
-      <Table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Age</th>
-          </tr>
-        </thead>
-        <tbody>
-          <td>1</td>
-          <td>Bob</td>
-          <td>23</td>
-        </tbody>
-      </Table>
+    <div className="App">
+      {/* <Table columns={columns} data={data} /> */}
+      <EmployeeForm />
     </div>
   );
 }
