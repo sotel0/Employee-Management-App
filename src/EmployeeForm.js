@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Button } from "reactstrap";
+import axios from "axios";
 
 export default class EmployeeForm extends Component {
   constructor(props) {
@@ -86,15 +87,26 @@ export default class EmployeeForm extends Component {
     this.setState({ [name]: value });
   }
 
-  handleSubmit(event) {}
+  handleSubmit(event) {
+    event.preventDefault();
+    console.log(this.state);
+    axios
+      .post("", this.state)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <div class="form-group">
+        <div className="form-group">
           First Name
           <input
-            class="form-control"
+            className="form-control"
             type="text"
             title="Full Name"
             name="firstname"
@@ -102,51 +114,56 @@ export default class EmployeeForm extends Component {
             placeholder="i.e. Johnathon"
           />
         </div>
-        <div class="form-group">
+        <div className="form-group">
           Last Name
           <input
-            class="form-control"
+            className="form-control"
             type="text"
             name="lastname"
             onChange={this.handleChange}
             placeholder="i.e. Doe"
           />
         </div>
-        <div class="form-group">
+        <div className="form-group">
           Street Address
           <input
-            class="form-control"
+            className="form-control"
             type="text"
             name="address"
             onChange={this.handleChange}
             placeholder="i.e. 123 Forest Avenue"
           />
         </div>
-        <div class="form-group">
+        <div className="form-group">
           City
           <input
-            class="form-control"
+            className="form-control"
             type="text"
             name="city"
             onChange={this.handleChange}
             placeholder="i.e. Irvine"
           />
         </div>
-        <div class="form-group">
+        <div className="form-group">
           Email Address
           <input
-            class="form-control"
+            className="form-control"
             type="text"
             name="email"
             onChange={this.handleChange}
             placeholder="i.e. johndoe@email.com"
           />
         </div>
-        <div class="form-group">
+        <div className="form-group">
           State
-          <select class="form-control" name="state">
+          <select
+            className="form-control"
+            name="state"
+            onChange={this.handleChange}
+            defaultValue={"default"}
+          >
             {/* Display placeholder & all options */}
-            <option value="i.e. California" disabled selected>
+            <option value="default" disabled hidden>
               {"i.e. California"}
             </option>
             {this.state.stateOptions.map((option) => {
@@ -158,27 +175,27 @@ export default class EmployeeForm extends Component {
             })}
           </select>
         </div>
-        <div class="form-group">
+        <div className="form-group">
           Phone Number
           <input
-            class="form-control"
+            className="form-control"
             type="text"
             name="phone"
             onChange={this.handleChange}
             placeholder="i.e. 123-456-7891"
           />
         </div>
-        <div class="form-group">
+        <div className="form-group">
           Zip Code
           <input
-            class="form-control"
+            className="form-control"
             type="text"
             name="zipcode"
             onChange={this.handleChange}
             placeholder="i.e. 95843"
           />
         </div>
-        <Button color="primary" active>
+        <Button color="primary" type="submit" active>
           Save
         </Button>
       </form>
