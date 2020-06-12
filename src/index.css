@@ -1,0 +1,8 @@
+.custom-column {
+  width: 50%;
+  float: left;
+}
+.custom-row {
+  width: 100%;
+  display: table;
+}
