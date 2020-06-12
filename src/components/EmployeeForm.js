@@ -87,6 +87,7 @@ export default class EmployeeForm extends Component {
     this.setState({ [name]: value });
   }
 
+  //TODO AJAX POST REQUEST TO SERVER
   handleSubmit(event) {
     event.preventDefault();
     console.log(this.state);
@@ -108,7 +109,7 @@ export default class EmployeeForm extends Component {
             <h5 className="float-left m-3">Enter Employee Details</h5>
             <Button
               className="float-right m-3"
-              onClick={() => this.props.action(0)}
+              onClick={() => this.props.action(1)}
               color="link"
             >
               Cancel
@@ -216,7 +217,7 @@ export default class EmployeeForm extends Component {
               <Button
                 color="primary"
                 type="submit"
-                onClick={() => this.props.action(2)}
+                onClick={() => this.props.action(1)}
               >
                 Save
               </Button>

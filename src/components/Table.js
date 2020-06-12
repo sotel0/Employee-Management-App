@@ -3,11 +3,13 @@ import { Table, Button } from "reactstrap";
 import axios from "axios";
 
 export default class EmployeeTable extends Component {
-  componentDidMount() {}
-
-  componentDidUpdate() {
-    //
+  componentDidMount() {
+    //TODO AJAX GET request for table data
   }
+
+  //TODO AJAX PATCH : on + button click
+
+  //TODO AJAX DELETE : on - button click
 
   render() {
     return (
@@ -35,17 +37,15 @@ export default class EmployeeTable extends Component {
               </tr>
             </thead>
             <tbody>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-              <td>@mdo</td>
-              <td>@mdo</td>
+              <td>Mark Wahlberg</td>
+              <td>mwall@hotmail.com</td>
+              <td>523-423-1453</td>
+              <td>Walmart Parking Lot</td>
+              <td>Active</td>
               <td>
+                {/* render button dynamically from status*/}
                 <Button outline color="danger">
                   X
-                </Button>
-                <Button outline color="primary">
-                  +
                 </Button>
               </td>
             </tbody>

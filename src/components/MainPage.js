@@ -11,47 +11,34 @@ class MainPage extends Component {
       showEmployeeForm: false,
     };
 
-    this.cancelForm = this.cancelForm.bind(this);
+    this.closeForm = this.closeForm.bind(this);
     this.createForm = this.createForm.bind(this);
-    this.saveForm = this.saveForm.bind(this);
+    this.swapComponentDisplay = this.swapComponentDisplay.bind(this);
   }
 
-  swapFormDisplay() {
-    if (this.state.showEmployeeForm) {
-      this.setState({ showEmployeeForm: false });
+  swapComponentDisplay(shownComponent) {
+    if (this.state[shownComponent]) {
+      this.setState({ [shownComponent]: false });
     } else {
-      this.setState({ showEmployeeForm: true });
+      this.setState({ [shownComponent]: true });
     }
   }
 
-  swapTableDisplay() {
-    if (this.state.showTable) {
-      this.setState({ showTable: false });
-    } else {
-      this.setState({ showTable: true });
-    }
-  }
-
-  cancelForm(event) {
-    this.swapFormDisplay();
-    this.swapTableDisplay();
-  }
-
-  saveForm(event) {
-    this.swapTableDisplay();
-    //AJAX POST REQUEST
+  closeForm(event) {
+    this.swapComponentDisplay("showEmployeeForm");
+    this.swapComponentDisplay("showTable");
   }
 
   createForm(event) {
-    this.swapFormDisplay();
-    this.swapTableDisplay();
+    this.swapComponentDisplay("showEmployeeForm");
+    this.swapComponentDisplay("showTable");
   }
 
   render() {
     return (
       <div>
         {this.state.showEmployeeForm && (
-          <EmployeeForm action={(this.cancelForm, this.saveForm)} />
+          <EmployeeForm action={this.closeForm} />
         )}
         {this.state.showTable && <Table action={this.createForm} />}
       </div>
