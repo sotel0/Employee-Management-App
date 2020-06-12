@@ -106,7 +106,7 @@ export default class EmployeeForm extends Component {
       <div>
         <Row>
           <Col>
-            <h5 className="float-left m-3">Enter Employee Details</h5>
+            <h5 className="float-left m-3">Enter Employee Detail</h5>
             <Button
               className="float-right m-3"
               onClick={() => this.props.action(1)}

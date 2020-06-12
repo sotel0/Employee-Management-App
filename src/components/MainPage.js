@@ -47,9 +47,7 @@ class MainPage extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return {
-    showTable: state.showTable,
-  };
+  return {};
 };
 
 export default connect(mapStateToProps)(MainPage);
