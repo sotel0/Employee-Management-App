@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import EmployeeForm from "./EmployeeForm.js";
 import Table from "./Table";
-import { connect } from "react-redux";
 
-class MainPage extends Component {
+export default class MainPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -50,4 +49,3 @@ const mapStateToProps = (state) => {
   return {};
 };
 
-export default connect(mapStateToProps)(MainPage);
