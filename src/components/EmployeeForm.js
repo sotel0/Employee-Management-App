@@ -8,14 +8,15 @@ export default class EmployeeForm extends Component {
 
     this.state = {
       newEmployee: {
-        firstname: "",
+        first_name: "",
         address: "",
-        lastname: "",
+        last_name: "",
         city: "",
         email: "",
         state: "",
         phone: "",
-        zipcode: "",
+        zip_code: "",
+        status : true,
       },
 
       stateOptions: [
@@ -84,21 +85,30 @@ export default class EmployeeForm extends Component {
   handleChange(event) {
     let name = event.target.name;
     let value = event.target.value;
-    this.setState({ [name]: value });
+
+    this.setState(prevState => {
+      let newEmployee = Object.assign({}, prevState.newEmployee);
+      newEmployee[name] = value;
+      return { newEmployee };
+    })
   }
 
-  //TODO AJAX POST REQUEST TO SERVER
+  
   handleSubmit(event) {
     event.preventDefault();
-    console.log(this.state);
+
+    //TODO FORM VALIDATION
+    //TODO don't unmount component if there's no api connection, or display error message
+    //TODO check for duplicates
     axios
-      .post("", this.state)
+      .post("http://localhost:9999/employee", this.state.newEmployee)
       .then((response) => {
         console.log(response);
       })
       .catch((error) => {
         console.log(error);
       });
+      this.props.action(1);
   }
 
   render() {
@@ -117,14 +127,14 @@ export default class EmployeeForm extends Component {
           </Col>
         </Row>
 
-        <Form center onSubmit={this.handleSubmit}>
+        <Form center="true" onSubmit={this.handleSubmit}>
           <Row form>
             <Col className="m-3">
               <FormGroup>
                 <Label> First Name </Label>
                 <Input
                   type="text"
-                  name="firstname"
+                  name="first_name"
                   onChange={this.handleChange}
                   placeholder="i.e. Johnathon"
                 />
@@ -134,7 +144,7 @@ export default class EmployeeForm extends Component {
               <FormGroup>
                 <Label>Street Address</Label>
                 <Input
-                  size="medium"
+                  bsSize="medium"
                   type="text"
                   name="address"
                   onChange={this.handleChange}
@@ -149,7 +159,7 @@ export default class EmployeeForm extends Component {
                 <Label>Last Name</Label>
                 <Input
                   type="text"
-                  name="lastname"
+                  name="last_name"
                   onChange={this.handleChange}
                   placeholder="i.e. Doe"
                 />
@@ -217,7 +227,6 @@ export default class EmployeeForm extends Component {
               <Button
                 color="primary"
                 type="submit"
-                onClick={() => this.props.action(1)}
               >
                 Save
               </Button>
@@ -228,7 +237,7 @@ export default class EmployeeForm extends Component {
                 <Label>Zipcode</Label>
                 <Input
                   type="text"
-                  name="zipcode"
+                  name="zip_code"
                   onChange={this.handleChange}
                   placeholder="i.e. 95843"
                 />

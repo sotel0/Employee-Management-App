@@ -14,7 +14,7 @@ class MainPage extends Component {
     this.closeForm = this.closeForm.bind(this);
     this.createForm = this.createForm.bind(this);
     this.swapComponentDisplay = this.swapComponentDisplay.bind(this);
-  }
+  }  
 
   swapComponentDisplay(shownComponent) {
     if (this.state[shownComponent]) {
